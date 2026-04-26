@@ -1,0 +1,246 @@
+2026-04-24 11:32:04,834  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-24 11:33:30,795  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-24 11:38:45,009  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-24 11:38:45,013  INFO  Starting ASL Reader …
+2026-04-24 11:38:45,014  ERROR  Model not found at:
+  C:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\model\asl_model.h5
+Run  src/train_model.py  first.
+2026-04-26 01:37:11,192  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 01:37:11,193  INFO  Starting ASL Reader …
+2026-04-26 01:37:11,399  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 01:37:11,402  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 01:37:11,419  INFO  Model loaded successfully.
+2026-04-26 01:37:28,650  INFO  Letter=S  conf=0.89
+2026-04-26 01:37:31,612  INFO  Letter=S  conf=0.86
+2026-04-26 01:37:41,225  INFO  Letter=B  conf=0.83
+2026-04-26 01:37:55,898  INFO  Letter=S  conf=0.90
+2026-04-26 01:38:01,850  INFO  Letter=S  conf=0.97
+2026-04-26 01:38:03,879  INFO  Letter=S  conf=0.39
+2026-04-26 01:38:09,115  INFO  Letter=Q  conf=0.87
+2026-04-26 01:38:13,689  INFO  Letter=S  conf=0.80
+2026-04-26 01:38:15,697  INFO  Letter=S  conf=0.88
+2026-04-26 01:38:17,715  INFO  Letter=S  conf=0.33
+2026-04-26 01:38:19,769  INFO  Letter=S  conf=0.83
+2026-04-26 01:38:23,174  INFO  Letter=Q  conf=0.83
+2026-04-26 01:38:58,057  INFO  Letter=S  conf=0.90
+2026-04-26 01:39:03,504  INFO  Letter=S  conf=0.88
+2026-04-26 01:39:05,564  INFO  Letter=S  conf=0.45
+2026-04-26 01:39:13,121  INFO  Smoothing buffer reset.
+2026-04-26 01:39:21,958  INFO  Letter=S  conf=0.84
+2026-04-26 01:39:23,980  INFO  Letter=S  conf=0.95
+2026-04-26 01:39:26,049  INFO  Letter=S  conf=0.33
+2026-04-26 01:39:28,053  INFO  Letter=S  conf=0.98
+2026-04-26 01:39:30,089  INFO  Letter=S  conf=0.84
+2026-04-26 01:39:32,111  INFO  Letter=S  conf=0.77
+2026-04-26 01:39:35,901  INFO  Letter=S  conf=0.81
+2026-04-26 01:39:46,114  INFO  User quit.
+2026-04-26 01:39:46,477  INFO  Session ended.
+2026-04-26 02:03:42,121  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 02:03:42,123  INFO  Starting ASL Reader …
+2026-04-26 02:03:42,352  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 02:03:42,355  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 02:03:42,362  INFO  Model loaded successfully.
+2026-04-26 02:04:02,734  INFO  Letter=S  conf=0.84
+2026-04-26 02:04:04,804  INFO  Letter=S  conf=0.93
+2026-04-26 02:04:08,192  INFO  Letter=S  conf=0.87
+2026-04-26 02:04:10,278  INFO  Letter=S  conf=0.91
+2026-04-26 02:04:12,312  INFO  Letter=S  conf=0.95
+2026-04-26 02:04:14,721  INFO  Letter=S  conf=0.85
+2026-04-26 02:04:16,878  INFO  Letter=S  conf=0.84
+2026-04-26 02:04:18,914  INFO  Letter=S  conf=0.87
+2026-04-26 02:04:20,927  INFO  Letter=S  conf=0.93
+2026-04-26 02:04:22,966  INFO  Letter=S  conf=0.83
+2026-04-26 02:04:25,035  INFO  Letter=S  conf=0.35
+2026-04-26 02:04:27,092  INFO  Letter=S  conf=0.43
+2026-04-26 02:04:29,127  INFO  Letter=S  conf=0.86
+2026-04-26 02:04:38,585  INFO  Letter=S  conf=0.90
+2026-04-26 02:04:40,619  INFO  Letter=S  conf=0.24
+2026-04-26 02:04:42,692  INFO  Letter=S  conf=0.70
+2026-04-26 02:04:44,735  INFO  Letter=S  conf=0.32
+2026-04-26 02:04:46,777  INFO  Letter=S  conf=0.68
+2026-04-26 02:04:50,119  INFO  User quit.
+2026-04-26 02:04:50,516  INFO  Session ended.
+2026-04-26 02:22:55,082  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 02:22:55,084  INFO  Starting ASL Reader …
+2026-04-26 02:22:55,300  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 02:22:55,302  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 02:22:55,314  INFO  Model loaded successfully.
+2026-04-26 02:23:11,310  INFO  User quit.
+2026-04-26 02:23:11,675  INFO  Session ended.
+2026-04-26 02:23:53,355  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 02:23:53,355  INFO  Starting ASL Reader …
+2026-04-26 02:23:53,511  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 02:23:53,515  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 02:23:53,524  INFO  Model loaded successfully.
+2026-04-26 02:24:03,910  INFO  Letter=S  conf=0.65
+2026-04-26 02:24:05,991  INFO  Letter=K  conf=0.67
+2026-04-26 02:24:12,766  INFO  Letter=K  conf=0.87
+2026-04-26 02:24:14,860  INFO  Letter=K  conf=0.93
+2026-04-26 02:24:29,780  INFO  Letter=X  conf=0.63
+2026-04-26 02:24:34,093  INFO  Letter=I  conf=0.82
+2026-04-26 02:24:36,150  INFO  Letter=I  conf=0.89
+2026-04-26 02:24:38,194  INFO  Letter=I  conf=0.89
+2026-04-26 02:24:42,671  INFO  Letter=I  conf=0.88
+2026-04-26 02:24:44,700  INFO  Letter=I  conf=0.89
+2026-04-26 02:24:47,887  INFO  Letter=I  conf=0.63
+2026-04-26 02:24:52,044  INFO  Letter=S  conf=0.61
+2026-04-26 02:24:54,046  INFO  Letter=S  conf=0.61
+2026-04-26 02:24:56,062  INFO  Letter=S  conf=0.64
+2026-04-26 02:24:58,064  INFO  Letter=S  conf=0.61
+2026-04-26 02:25:02,237  INFO  Letter=R  conf=0.63
+2026-04-26 02:25:09,416  INFO  Letter=G  conf=0.63
+2026-04-26 02:25:25,097  INFO  Letter=K  conf=0.60
+2026-04-26 02:25:28,703  INFO  Letter=X  conf=0.84
+2026-04-26 02:25:30,763  INFO  Letter=X  conf=0.87
+2026-04-26 02:25:36,404  INFO  Letter=K  conf=0.63
+2026-04-26 02:25:47,050  INFO  Letter=X  conf=0.86
+2026-04-26 02:25:50,168  INFO  Letter=X  conf=0.61
+2026-04-26 02:25:52,381  INFO  Letter=F  conf=0.61
+2026-04-26 02:25:54,425  INFO  Letter=F  conf=0.84
+2026-04-26 02:25:57,288  INFO  Letter=H  conf=0.96
+2026-04-26 02:26:03,088  INFO  Letter=S  conf=0.73
+2026-04-26 02:26:07,479  INFO  Letter=I  conf=0.89
+2026-04-26 02:26:10,317  INFO  Letter=I  conf=0.70
+2026-04-26 02:26:16,564  INFO  Letter=S  conf=0.77
+2026-04-26 02:26:24,527  INFO  Letter=F  conf=0.79
+2026-04-26 02:26:26,611  INFO  Letter=F  conf=0.87
+2026-04-26 02:26:29,136  INFO  Letter=F  conf=0.94
+2026-04-26 02:26:31,237  INFO  Letter=K  conf=0.93
+2026-04-26 02:26:36,946  INFO  User quit.
+2026-04-26 02:26:37,406  INFO  Session ended.
+2026-04-26 17:29:17,311  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 17:29:17,312  INFO  Starting ASL Reader …
+2026-04-26 17:29:17,480  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 17:29:17,483  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 17:29:17,512  INFO  Model loaded successfully.
+2026-04-26 17:29:27,510  INFO  Letter=K  conf=0.85
+2026-04-26 17:29:36,193  INFO  Letter=A  conf=1.00
+2026-04-26 17:29:38,990  INFO  Letter=T  conf=0.99
+2026-04-26 17:29:41,036  INFO  Letter=T  conf=1.00
+2026-04-26 17:29:43,039  INFO  Letter=A  conf=1.00
+2026-04-26 17:29:45,088  INFO  Letter=T  conf=1.00
+2026-04-26 17:29:47,138  INFO  Letter=T  conf=0.72
+2026-04-26 17:29:49,149  INFO  Letter=T  conf=0.97
+2026-04-26 17:29:53,165  INFO  Letter=A  conf=1.00
+2026-04-26 17:29:54,466  INFO  User quit.
+2026-04-26 17:29:54,827  INFO  Session ended.
+2026-04-26 18:52:33,687  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 18:52:33,689  INFO  Starting ASL Reader …
+2026-04-26 18:52:33,949  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 18:52:33,952  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 18:52:33,960  INFO  Model loaded successfully.
+2026-04-26 18:52:43,216  INFO  Letter=S  conf=0.85
+2026-04-26 18:52:45,265  INFO  Letter=A  conf=0.87
+2026-04-26 18:52:47,325  INFO  Letter=S  conf=0.90
+2026-04-26 18:52:49,426  INFO  Letter=T  conf=1.00
+2026-04-26 18:52:51,477  INFO  Letter=T  conf=0.93
+2026-04-26 18:52:53,573  INFO  Letter=M  conf=0.74
+2026-04-26 18:52:55,601  INFO  Letter=O  conf=1.00
+2026-04-26 18:52:57,626  INFO  Letter=B  conf=0.99
+2026-04-26 18:52:59,701  INFO  Letter=B  conf=0.81
+2026-04-26 18:53:02,778  INFO  Letter=W  conf=1.00
+2026-04-26 18:53:04,873  INFO  Letter=W  conf=1.00
+2026-04-26 18:53:06,887  INFO  Letter=Y  conf=0.93
+2026-04-26 18:53:09,031  INFO  Letter=T  conf=0.71
+2026-04-26 18:53:11,078  INFO  Letter=T  conf=0.99
+2026-04-26 18:53:13,078  INFO  Letter=E  conf=1.00
+2026-04-26 18:53:15,183  INFO  Letter=E  conf=1.00
+2026-04-26 18:53:17,246  INFO  Letter=X  conf=0.99
+2026-04-26 18:53:19,281  INFO  Letter=X  conf=0.82
+2026-04-26 18:53:21,573  INFO  Letter=L  conf=0.80
+2026-04-26 18:53:24,716  INFO  Letter=L  conf=1.00
+2026-04-26 18:53:26,808  INFO  Letter=L  conf=1.00
+2026-04-26 18:53:28,899  INFO  Letter=L  conf=0.99
+2026-04-26 18:53:31,005  INFO  Letter=L  conf=1.00
+2026-04-26 18:53:37,100  INFO  Letter=G  conf=0.67
+2026-04-26 18:53:40,072  INFO  Letter=L  conf=0.86
+2026-04-26 18:53:42,107  INFO  Letter=L  conf=0.95
+2026-04-26 18:53:47,269  INFO  Letter=L  conf=0.66
+2026-04-26 18:53:49,307  INFO  Letter=L  conf=0.91
+2026-04-26 18:53:51,780  INFO  Letter=P  conf=0.80
+2026-04-26 18:53:54,034  INFO  Letter=G  conf=0.66
+2026-04-26 18:54:02,018  INFO  Letter=Y  conf=0.99
+2026-04-26 18:54:06,239  INFO  Letter=Q  conf=1.00
+2026-04-26 18:54:09,417  INFO  Letter=U  conf=0.62
+2026-04-26 18:54:11,565  INFO  Letter=X  conf=0.97
+2026-04-26 18:54:13,573  INFO  Letter=K  conf=1.00
+2026-04-26 18:54:16,099  INFO  Letter=K  conf=1.00
+2026-04-26 18:54:18,103  INFO  Letter=K  conf=0.98
+2026-04-26 18:54:20,179  INFO  Letter=K  conf=0.99
+2026-04-26 18:54:22,267  INFO  Letter=K  conf=1.00
+2026-04-26 18:54:24,310  INFO  Letter=S  conf=0.96
+2026-04-26 18:54:26,369  INFO  Letter=T  conf=1.00
+2026-04-26 18:54:28,431  INFO  Letter=U  conf=0.63
+2026-04-26 18:54:30,492  INFO  Letter=K  conf=1.00
+2026-04-26 18:54:32,578  INFO  Letter=K  conf=1.00
+2026-04-26 18:54:34,598  INFO  Letter=V  conf=0.67
+2026-04-26 18:54:36,679  INFO  Letter=K  conf=0.93
+2026-04-26 18:54:38,725  INFO  Letter=U  conf=0.66
+2026-04-26 18:54:44,968  INFO  Letter=E  conf=0.89
+2026-04-26 18:54:47,035  INFO  Letter=E  conf=0.99
+2026-04-26 18:54:49,091  INFO  Letter=F  conf=1.00
+2026-04-26 18:54:51,795  INFO  Letter=E  conf=0.62
+2026-04-26 18:54:53,878  INFO  Letter=F  conf=0.84
+2026-04-26 18:54:56,035  INFO  Letter=G  conf=0.75
+2026-04-26 18:54:58,963  INFO  Letter=A  conf=0.90
+2026-04-26 18:55:01,392  INFO  Letter=H  conf=0.60
+2026-04-26 18:55:03,399  INFO  Letter=G  conf=0.85
+2026-04-26 18:55:05,424  INFO  Letter=B  conf=1.00
+2026-04-26 18:55:08,917  INFO  Letter=H  conf=0.91
+2026-04-26 18:55:11,056  INFO  Letter=L  conf=0.76
+2026-04-26 18:55:13,311  INFO  Letter=P  conf=0.97
+2026-04-26 18:55:14,445  INFO  User quit.
+2026-04-26 18:55:14,841  INFO  Session ended.
+2026-04-26 18:55:26,068  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 18:55:26,068  INFO  Starting ASL Reader …
+2026-04-26 18:55:26,227  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 18:55:26,230  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 18:55:26,234  INFO  Model loaded successfully.
+2026-04-26 18:55:32,396  INFO  Letter=L  conf=0.61
+2026-04-26 18:55:34,481  INFO  Letter=L  conf=0.93
+2026-04-26 18:55:36,513  INFO  Letter=L  conf=1.00
+2026-04-26 18:55:38,513  INFO  Letter=L  conf=0.97
+2026-04-26 18:55:42,449  INFO  Letter=G  conf=0.81
+2026-04-26 18:55:44,850  INFO  Letter=E  conf=0.66
+2026-04-26 18:55:46,924  INFO  Letter=Q  conf=0.98
+2026-04-26 18:55:48,993  INFO  Letter=A  conf=0.80
+2026-04-26 18:55:52,672  INFO  Letter=P  conf=0.81
+2026-04-26 18:55:54,676  INFO  Letter=L  conf=1.00
+2026-04-26 18:55:57,412  INFO  Letter=L  conf=0.99
+2026-04-26 18:55:59,453  INFO  Letter=G  conf=0.74
+2026-04-26 18:56:04,337  INFO  Letter=A  conf=0.99
+2026-04-26 18:56:06,403  INFO  Letter=L  conf=1.00
+2026-04-26 18:56:08,407  INFO  Letter=L  conf=1.00
+2026-04-26 18:56:10,437  INFO  Letter=L  conf=1.00
+2026-04-26 18:56:13,215  INFO  Letter=T  conf=0.85
+2026-04-26 18:56:15,269  INFO  Letter=P  conf=0.87
+2026-04-26 18:56:17,330  INFO  Letter=P  conf=0.81
+2026-04-26 18:56:21,321  INFO  Letter=T  conf=0.86
+2026-04-26 18:56:23,370  INFO  Letter=T  conf=0.99
+2026-04-26 18:56:25,439  INFO  Letter=T  conf=0.98
+2026-04-26 18:56:27,455  INFO  Letter=T  conf=0.98
+2026-04-26 18:56:29,642  INFO  Letter=T  conf=0.66
+2026-04-26 18:56:31,693  INFO  Letter=A  conf=1.00
+2026-04-26 18:56:34,058  INFO  Letter=Q  conf=0.66
+2026-04-26 18:56:36,158  INFO  Letter=A  conf=0.72
+2026-04-26 18:56:38,262  INFO  Letter=B  conf=0.98
+2026-04-26 18:56:40,403  INFO  Letter=O  conf=0.62
+2026-04-26 18:56:42,510  INFO  Letter=O  conf=0.77
+2026-04-26 18:56:44,584  INFO  Letter=B  conf=1.00
+2026-04-26 18:56:46,621  INFO  Letter=O  conf=0.97
+2026-04-26 18:56:48,706  INFO  Letter=B  conf=0.92
+2026-04-26 18:56:50,727  INFO  Letter=B  conf=0.67
+2026-04-26 18:56:52,832  INFO  Letter=K  conf=0.63
+2026-04-26 18:56:55,440  INFO  Letter=K  conf=0.62
+2026-04-26 18:56:57,442  INFO  Letter=O  conf=0.65
+2026-04-26 18:56:59,469  INFO  Letter=E  conf=0.68
+2026-04-26 18:57:01,717  INFO  Letter=E  conf=0.64
+2026-04-26 18:57:03,728  INFO  Letter=L  conf=1.00
+2026-04-26 18:57:05,997  INFO  Letter=Y  conf=0.92
+2026-04-26 18:57:08,006  INFO  Letter=P  conf=0.96
+2026-04-26 18:57:10,378  INFO  Letter=Y  conf=1.00
+2026-04-26 18:57:12,701  INFO  Letter=X  conf=0.98
+2026-04-26 18:57:16,026  INFO  Letter=T  conf=0.96
+2026-04-26 18:57:18,538  INFO  Letter=U  conf=0.62
+2026-04-26 18:57:23,381  INFO  User quit.
+2026-04-26 18:57:23,731  INFO  Session ended.
