@@ -244,3 +244,106 @@ Run  src/train_model.py  first.
 2026-04-26 18:57:18,538  INFO  Letter=U  conf=0.62
 2026-04-26 18:57:23,381  INFO  User quit.
 2026-04-26 18:57:23,731  INFO  Session ended.
+2026-04-26 22:44:05,379  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 22:44:07,301  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 22:44:07,304  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 22:45:14,753  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 22:45:16,617  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 22:45:16,621  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 22:45:17,047  WARNING  From c:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2026-04-26 22:47:24,280  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 22:47:25,798  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 22:47:25,803  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 22:47:26,082  WARNING  From c:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2026-04-26 22:49:14,397  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-26 22:49:14,397  INFO  Starting ASL Reader …
+2026-04-26 22:49:14,502  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-26 22:49:14,504  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-26 22:49:14,511  INFO  Model loaded successfully.
+2026-04-26 22:49:22,043  INFO  Letter=S  conf=0.68
+2026-04-26 22:49:28,705  INFO  Letter=S  conf=0.69
+2026-04-26 22:49:30,713  INFO  Letter=X  conf=1.00
+2026-04-26 22:49:33,832  INFO  Letter=L  conf=0.80
+2026-04-26 22:49:36,045  INFO  Letter=X  conf=1.00
+2026-04-26 22:49:45,612  INFO  Letter=T  conf=0.76
+2026-04-26 22:49:47,671  INFO  Letter=T  conf=0.71
+2026-04-26 22:49:51,162  INFO  Letter=N  conf=0.80
+2026-04-26 22:49:59,662  INFO  Letter=O  conf=0.67
+2026-04-26 22:50:01,695  INFO  Letter=C  conf=0.96
+2026-04-26 22:50:03,728  INFO  Letter=C  conf=1.00
+2026-04-26 22:50:05,770  INFO  Letter=C  conf=0.98
+2026-04-26 22:50:08,098  INFO  Letter=O  conf=0.72
+2026-04-26 22:50:10,194  INFO  Letter=H  conf=0.85
+2026-04-26 22:50:12,230  INFO  Letter=O  conf=0.89
+2026-04-26 22:50:14,294  INFO  Letter=C  conf=0.98
+2026-04-26 22:50:26,679  INFO  Letter=B  conf=1.00
+2026-04-26 22:50:32,965  INFO  Letter=U  conf=0.95
+2026-04-26 22:50:35,019  INFO  Letter=U  conf=0.94
+2026-04-26 22:50:37,042  INFO  Letter=V  conf=0.71
+2026-04-26 22:50:40,375  INFO  Letter=U  conf=0.61
+2026-04-26 22:50:44,132  INFO  Letter=U  conf=0.62
+2026-04-26 22:50:46,482  INFO  Letter=U  conf=0.64
+2026-04-26 22:50:57,000  INFO  Letter=K  conf=0.98
+2026-04-26 22:50:59,014  INFO  Letter=U  conf=0.90
+2026-04-26 22:51:03,904  INFO  Letter=W  conf=1.00
+2026-04-26 22:51:05,917  INFO  Letter=W  conf=1.00
+2026-04-26 22:51:11,525  INFO  Letter=X  conf=1.00
+2026-04-26 22:51:17,046  INFO  Letter=L  conf=1.00
+2026-04-26 22:51:19,096  INFO  Letter=Y  conf=0.96
+2026-04-26 22:51:25,165  INFO  Letter=A  conf=1.00
+2026-04-26 22:51:27,472  INFO  Letter=Q  conf=0.99
+2026-04-26 22:51:29,510  INFO  Letter=Q  conf=1.00
+2026-04-26 22:51:31,574  INFO  Letter=A  conf=0.93
+2026-04-26 22:51:33,628  INFO  Letter=M  conf=0.72
+2026-04-26 22:51:35,676  INFO  Letter=A  conf=1.00
+2026-04-26 22:51:37,736  INFO  Letter=A  conf=0.61
+2026-04-26 22:51:47,824  INFO  Letter=Q  conf=1.00
+2026-04-26 22:51:54,790  INFO  Letter=V  conf=0.71
+2026-04-26 22:51:56,857  INFO  Letter=K  conf=1.00
+2026-04-26 22:51:58,894  INFO  Letter=U  conf=0.68
+2026-04-26 22:52:08,327  INFO  Letter=R  conf=0.81
+2026-04-26 22:52:10,571  INFO  Letter=K  conf=0.62
+2026-04-26 22:52:12,572  INFO  Letter=V  conf=0.66
+2026-04-26 22:52:14,690  INFO  Letter=V  conf=0.62
+2026-04-26 22:52:16,711  INFO  Letter=V  conf=0.78
+2026-04-26 22:52:21,263  INFO  Letter=V  conf=0.61
+2026-04-26 22:52:23,337  INFO  Letter=V  conf=0.75
+2026-04-26 22:52:25,394  INFO  Letter=V  conf=0.83
+2026-04-26 22:52:27,462  INFO  Letter=V  conf=0.82
+2026-04-26 22:52:29,488  INFO  Letter=U  conf=0.69
+2026-04-26 22:52:33,043  INFO  Letter=U  conf=0.72
+2026-04-26 22:52:35,171  INFO  Letter=U  conf=0.64
+2026-04-26 22:52:37,216  INFO  Letter=U  conf=0.70
+2026-04-26 22:52:39,275  INFO  Letter=U  conf=0.72
+2026-04-26 22:52:41,312  INFO  Letter=U  conf=0.95
+2026-04-26 22:52:43,391  INFO  Letter=U  conf=0.96
+2026-04-26 22:53:13,402  INFO  Letter=V  conf=0.71
+2026-04-26 22:53:15,505  INFO  Letter=V  conf=0.70
+2026-04-26 22:53:19,658  INFO  Letter=V  conf=0.62
+2026-04-26 22:53:22,325  INFO  Letter=U  conf=0.72
+2026-04-26 22:53:31,854  INFO  Letter=L  conf=0.94
+2026-04-26 22:53:51,771  INFO  User quit.
+2026-04-26 22:53:52,167  INFO  Session ended.
+2026-04-27 00:04:27,158  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:05:06,107  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:05:08,044  WARNING  From c:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2026-04-27 00:05:31,106  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-27 00:05:31,109  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-27 00:12:04,635  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:16:04,373  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:16:23,541  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:21:46,678  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 00:21:49,497  WARNING  From c:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2026-04-27 00:43:04,757  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-27 00:43:04,777  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-27 01:03:34,977  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 01:03:36,739  WARNING  From c:\Users\hp\Documents\BTech_CSE\Projects\Sign Language Recognizer\venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2026-04-27 01:04:16,224  INFO  mediapipe >= 0.10 detected — using Tasks API.
+2026-04-27 01:04:26,876  WARNING  TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-27 01:04:26,879  WARNING  Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2026-04-27 01:07:47,850  INFO  mediapipe >= 0.10 detected — using Tasks API.
