@@ -92,6 +92,25 @@ class ASLPredictor:
         self._voter.update(letter)                       # utils MajorityVoter
         return letter, conf, self._voter.vote()
 
+    def predict_with_probabilities(self, landmarks):
+        """
+        Run inference with smoothing and include the full softmax output.
+
+        Returns
+        -------
+        letter : str | None
+        confidence : float
+        smoothed : str | None
+        raw_probs : ndarray
+        """
+        letter, conf, raw_probs = self.predict_single(landmarks)
+
+        if conf < self.confidence:
+            return None, conf, None, raw_probs
+
+        self._voter.update(letter)
+        return letter, conf, self._voter.vote(), raw_probs
+
     def reset(self) -> None:
         """Clear the smoothing buffer (e.g., when the hand leaves frame)."""
         self._voter.reset()                              # utils MajorityVoter
