@@ -1,8 +1,6 @@
 """
 Streamlit frontend for the ASL Sign Language Detector.
 
-Run with:
-    streamlit run streamlit_app.py
 """
 
 from __future__ import annotations
