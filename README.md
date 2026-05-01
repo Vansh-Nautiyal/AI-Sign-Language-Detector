@@ -26,7 +26,6 @@ AI-Sign-Language-Detector/
 |   |-- predict.py
 |   `-- utils.py
 `-- logs/
-    `-- predictions.log
 ```
 
 ## Installation

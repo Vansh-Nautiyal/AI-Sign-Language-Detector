@@ -31,15 +31,10 @@ sys.path.insert(0, SRC_DIR)
 from predict import ASLPredictor
 
 # ── Logging setup ─────────────────────────────────────────────────────────────
-LOG_DIR  = os.path.join(os.path.dirname(__file__), "logs")
-os.makedirs(LOG_DIR, exist_ok=True)
-LOG_PATH = os.path.join(LOG_DIR, "predictions.log")
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s  %(levelname)s  %(message)s",
     handlers=[
-        logging.FileHandler(LOG_PATH),
         logging.StreamHandler(sys.stdout),
     ],
 )

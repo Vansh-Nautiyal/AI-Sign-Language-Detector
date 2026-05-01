@@ -332,14 +332,6 @@ def run_realtime_webcam(
                 if letter is None:
                     raw_letter = probs.iloc[0]["Letter"] if not probs.empty else None
                     predictor.reset()
-                    draw_label_box(
-                        frame,
-                        f"Low confidence: {raw_letter} ({conf:.0%})",
-                        (10, 40),
-                        font_scale=0.8,
-                        fg=COLOR_YELLOW,
-                        bg=(30, 30, 30),
-                    )
                     last_result = PredictionResult(
                         frame_bgr=frame.copy(),
                         status="Low confidence",
@@ -373,15 +365,6 @@ def run_realtime_webcam(
                         4,
                         cv2.LINE_AA,
                     )
-                    draw_label_box(
-                        frame,
-                        f"Prediction: {label} ({conf:.0%})",
-                        (10, 40),
-                        font_scale=1.0,
-                        thickness=2,
-                        fg=color,
-                        bg=(30, 30, 30),
-                    )
                     last_result = PredictionResult(
                         frame_bgr=frame.copy(),
                         status="Prediction ready",
@@ -392,14 +375,6 @@ def run_realtime_webcam(
                     )
             else:
                 predictor.reset()
-                draw_label_box(
-                    frame,
-                    "No hand detected",
-                    (10, 40),
-                    font_scale=0.8,
-                    fg=COLOR_RED,
-                    bg=(30, 30, 30),
-                )
                 last_result = PredictionResult(frame_bgr=frame.copy(), status="No hand detected")
 
             draw_label_box(
@@ -579,10 +554,19 @@ def render_realtime_mode(predictor: ASLPredictor, mirror_image: bool) -> None:
     st.title("Realtime Webcam")
     st.caption("This opens a desktop OpenCV window. Press q to quit, or r to reset smoothing.")
 
-    launch = st.button("Open realtime app", type="primary", use_container_width=False)
-    if not launch:
-        st.info("Click the button above to start the live webcam reader.")
-        return
+    col_launch, col_ref = st.columns([1, 1.5], gap="large")
+    
+    with col_launch:
+        launch = st.button("Open realtime app", type="primary", use_container_width=False)
+        if not launch:
+            st.info("Click the button above to start the live webcam reader.")
+            return
+    
+    with col_ref:
+        st.subheader("ASL Hand Signs")
+        if os.path.isfile(os.path.join(BASE_DIR, "hand_signs.png")):
+            st.image(os.path.join(BASE_DIR, "hand_signs.png"), width=300)
+        st.caption("⚠️ Signs for 'J' and 'Z' cannot be classified as they require motion")
 
     status = st.empty()
     status.info("Opening webcam window. Return here after pressing q in the OpenCV window.")
