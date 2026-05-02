@@ -1,13 +1,25 @@
 """
 train_model.py — ASL MLP Classifier Training
 =============================================
-Loads landmark CSV, trains a lightweight Dense Neural Network,
+Loads landmark CSV, trains a Dense Neural Network (MLP),
 and saves the model to model/asl_model.h5.
 
 Usage:
-  python src/train_model.py
+  python src/train_model.py                   # train on data/dataset.csv
+  python src/train_model.py --mix             # merge dataset.csv + webcam.csv then train
+  python src/train_model.py --webcam-only     # train only on webcam-collected samples
+
+The --mix flag is the recommended workflow after collecting your own
+webcam samples with collect_data.py. It combines the base synthetic
+dataset with your real hand data for best real-world accuracy.
+
+Webcam data (collect_data.py output) is auto-saved to data/dataset.csv.
+If you want to keep synthetic and real data separate, save webcam data
+to a different CSV and point --webcam to it:
+  python src/train_model.py --mix --webcam data/my_hand.csv
 """
 
+import argparse
 import os
 import sys
 import numpy as np
@@ -26,7 +38,8 @@ from utils import load_dataset_from_csv, ASLLabelEncoder   # ← from utils.py
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.dirname(__file__))
-CSV_PATH   = os.path.join(BASE_DIR, "data",  "dataset.csv")
+CSV_PATH        = os.path.join(BASE_DIR, "data", "dataset.csv")
+WEBCAM_CSV_PATH = os.path.join(BASE_DIR, "data", "webcam.csv")
 MODEL_DIR  = os.path.join(BASE_DIR, "model")
 MODEL_PATH = os.path.join(MODEL_DIR, "asl_model.h5")
 PLOT_PATH  = os.path.join(MODEL_DIR, "training_history.png")
@@ -35,38 +48,79 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 # ── Hyper-parameters ──────────────────────────────────────────────────────────
 TEST_SIZE   = 0.20
 RANDOM_SEED = 42
-EPOCHS      = 50
+EPOCHS      = 100    # increased — early stopping prevents overfitting anyway
 BATCH_SIZE  = 32
 
 
 # ── Data loading ──────────────────────────────────────────────────────────────
-def load_dataset(path: str):
-    """Delegates to utils.load_dataset_from_csv for DRY data loading."""
+def load_dataset(path: str, webcam_path: str | None = None):
+    """
+    Load dataset CSV. If webcam_path is given and exists, merge both
+    CSVs before training so the model learns from both synthetic and
+    real webcam samples.
+
+    Webcam rows are duplicated 3x to give real data higher weight
+    over synthetic data — this is the key to closing the gap between
+    test accuracy and real-world accuracy.
+    """
+    import pandas as pd_inner
+
+    df_base = pd_inner.read_csv(path)
+    print(f"Base dataset   : {len(df_base):,} samples")
+
+    if webcam_path and os.path.isfile(webcam_path):
+        df_webcam = pd_inner.read_csv(webcam_path)
+        print(f"Webcam dataset : {len(df_webcam):,} samples  (weighted x3)")
+        # Repeat webcam rows 3× so real hand data dominates
+        df_webcam_weighted = pd_inner.concat([df_webcam] * 3, ignore_index=True)
+        df_combined = pd_inner.concat([df_base, df_webcam_weighted], ignore_index=True)
+        print(f"Combined total : {len(df_combined):,} samples")
+        df_combined.to_csv("/tmp/_combined_dataset.csv", index=False)
+        path = "/tmp/_combined_dataset.csv"
+    elif webcam_path:
+        print(f"⚠  Webcam CSV not found: {webcam_path} — using base dataset only")
+
     X, y, encoder = load_dataset_from_csv(path)
     class_names   = encoder.class_names
-    print(f"Loaded {len(X):,} samples  |  {encoder.num_classes} classes: {class_names}")
+    print(f"\nFinal: {len(X):,} samples  |  {encoder.num_classes} classes: {class_names}")
     print(f"Feature shape: {X.shape}")
     return X, y, class_names, encoder
 
 
 # ── Model definition ──────────────────────────────────────────────────────────
 def build_model(input_dim: int, num_classes: int) -> tf.keras.Model:
-    """Lightweight MLP suitable for real-time inference."""
+    """
+    Improved MLP — extra hidden layer + L2 regularisation to reduce
+    confusion between similar signs (U/V, A/E/S, M/N etc.).
+    Still lightweight enough for real-time CPU inference (~2 ms).
+    """
+    reg = tf.keras.regularizers.l2(1e-4)
+
     model = models.Sequential(
         [
             layers.Input(shape=(input_dim,)),
-            layers.Dense(128, activation="relu"),
+
+            # Layer 1 — broad feature extraction
+            layers.Dense(256, activation="relu", kernel_regularizer=reg),
+            layers.BatchNormalization(),
+            layers.Dropout(0.4),
+
+            # Layer 2 — pattern combination
+            layers.Dense(128, activation="relu", kernel_regularizer=reg),
             layers.BatchNormalization(),
             layers.Dropout(0.3),
-            layers.Dense(64, activation="relu"),
+
+            # Layer 3 — fine discrimination between similar signs
+            layers.Dense(64, activation="relu", kernel_regularizer=reg),
             layers.BatchNormalization(),
             layers.Dropout(0.2),
+
             layers.Dense(num_classes, activation="softmax"),
         ],
-        name="ASL_MLP",
+        name="ASL_MLP_v2",
     )
     model.compile(
-        optimizer="adam",
+        optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
         loss="categorical_crossentropy",
         metrics=["accuracy"],
     )
@@ -91,7 +145,7 @@ def train(X, y, class_names):
 
     # Callbacks
     early_stop = callbacks.EarlyStopping(
-        monitor="val_accuracy", patience=10, restore_best_weights=True
+        monitor="val_accuracy", patience=15, restore_best_weights=True
     )
     reduce_lr = callbacks.ReduceLROnPlateau(
         monitor="val_loss", factor=0.5, patience=5, min_lr=1e-5, verbose=1

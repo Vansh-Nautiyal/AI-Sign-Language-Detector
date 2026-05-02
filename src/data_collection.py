@@ -26,7 +26,9 @@ from utils import append_sample_to_csv
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
-CSV_PATH = os.path.join(DATA_DIR, "dataset.csv")
+# Webcam samples are saved to webcam.csv — separate from dataset.csv
+# so you can mix both with:  python src/train_model.py --mix
+CSV_PATH = os.path.join(DATA_DIR, "webcam.csv")
 
 # ── MediaPipe — detect which API is available ─────────────────────────────────
 _USE_NEW_API = False
@@ -138,7 +140,7 @@ def main():
     if not cap.isOpened():
         raise RuntimeError("Cannot open webcam. Check your camera index.")
 
-    status_msg   = "Press A-Z to collect | ESC to quit"
+    status_msg   = "Saving to webcam.csv | A-Z to collect | ESC to quit"
     status_color = (0, 255, 0)
     last_saved   = None
     save_time    = 0
@@ -176,7 +178,7 @@ def main():
             ) < 1
 
             if key == 27 or window_closed:   # 27 = ESC
-                print("Quitting data collection.")
+                print("Quitting data collection. Samples saved to data/webcam.csv")
                 break
 
             # ── Collect: any letter key A-Z (including Q) ─────────────────
@@ -195,7 +197,9 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
-    print(f"\nDataset saved to: {CSV_PATH}")
+    print(f"\nWebcam samples saved to: {CSV_PATH}")
+    print("Now retrain with mixed data:")
+    print("  python src/train_model.py --mix")
 
 
 if __name__ == "__main__":

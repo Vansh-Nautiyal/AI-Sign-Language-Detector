@@ -20,8 +20,8 @@ MODEL_PATH  = os.path.join(BASE_DIR, "model", "asl_model.h5")
 LABEL_PATH  = os.path.join(BASE_DIR, "model", "class_names.txt")
 
 # ── Thresholds ────────────────────────────────────────────────────────────────
-CONFIDENCE_THRESHOLD = 0.60   # only show prediction if model is confident enough
-SMOOTHING_WINDOW     = 10     # majority-vote over last N predictions
+CONFIDENCE_THRESHOLD = 0.75   # only show prediction if model is confident enough
+SMOOTHING_WINDOW     = 15     # majority-vote over last N predictions
 
 
 class ASLPredictor:

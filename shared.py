@@ -93,6 +93,41 @@ def inject_styles() -> None:
     st.markdown(
         """
         <style>
+        :root {
+            --app-gradient: linear-gradient(0deg, rgba(2, 0, 36, 1) 14%, rgba(74, 5, 130, 1) 60%);
+            --panel-bg: rgba(8, 6, 28, 0.72);
+            --panel-border: rgba(219, 201, 255, 0.22);
+            --text-muted: rgba(245, 240, 255, 0.76);
+        }
+        .stApp,
+        [data-testid="stAppViewContainer"],
+        [data-testid="stAppViewContainer"] > .main {
+            background: #020024;
+            background: var(--app-gradient);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        [data-testid="stHeader"],
+        header {
+            background: rgba(2, 0, 36, 0.76);
+            backdrop-filter: blur(10px);
+        }
+        [data-testid="stSidebar"] {
+            background: rgba(2, 0, 36, 0.88);
+            border-right: 1px solid var(--panel-border);
+        }
+        [data-testid="stSidebar"] * {
+            color: #f8f4ff;
+        }
+        .stMarkdown,
+        .stMarkdown p,
+        .stCaption,
+        h1, h2, h3, h4, h5, h6,
+        label,
+        [data-testid="stMetricLabel"],
+        [data-testid="stMetricValue"] {
+            color: #f8f4ff;
+        }
         .block-container {
             padding-top: 2rem;
             padding-bottom: 2rem;
@@ -104,21 +139,34 @@ def inject_styles() -> None:
             line-height: 1.02;
             margin-bottom: 1rem;
         }
-        .hero p { color: #52616b; font-size: 1.15rem; max-width: 760px; }
+        .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 760px; }
         .choice-panel {
-            border: 1px solid rgba(125,140,155,.35);
+            border: 1px solid var(--panel-border);
             border-radius: 8px;
             padding: 1.25rem;
             min-height: 150px;
-            background: var(--secondary-background-color);
+            background: var(--panel-bg);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
         }
         .choice-panel h3 { margin-top: 0; }
-        .choice-panel p  { color: #52616b; }
+        .choice-panel p  { color: var(--text-muted); }
         .status-strip {
-            border-top: 1px solid #e7edf2;
-            border-bottom: 1px solid #e7edf2;
+            border-top: 1px solid var(--panel-border);
+            border-bottom: 1px solid var(--panel-border);
             padding: .8rem 0;
-            color: #52616b;
+            color: var(--text-muted);
+        }
+        [data-testid="stMetric"],
+        [data-testid="stDataFrameResizable"],
+        div[data-testid="stAlert"],
+        div[data-testid="stCameraInput"],
+        div[data-testid="stFileUploader"],
+        div[data-testid="stImage"] {
+            background: rgba(8, 6, 28, 0.46);
+            border-radius: 8px;
+        }
+        hr {
+            border-color: var(--panel-border);
         }
         </style>
         """,
