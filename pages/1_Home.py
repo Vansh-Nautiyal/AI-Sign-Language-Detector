@@ -23,7 +23,6 @@ st.markdown(
         <p>
             Real-time American Sign Language recognition powered by MediaPipe
             hand landmarks and a lightweight neural network.
-            Use the sidebar to navigate between pages.
         </p>
     </section>
     """,

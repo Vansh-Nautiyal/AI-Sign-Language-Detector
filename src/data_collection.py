@@ -13,7 +13,6 @@ Controls:
   ESC       : quit
   Window X  : quit (click the window close button)
 
-Note: Q is now a collectible letter, not a quit key.
 """
 
 import os
