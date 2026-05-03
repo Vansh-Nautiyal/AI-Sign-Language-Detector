@@ -4,26 +4,6 @@ import_dataset.py — ASL Dataset Importer
 Generates a high-quality ASL landmark dataset instantly (< 30 seconds)
 without needing MediaPipe to detect hands in images.
 
-WHY THIS APPROACH
------------------
-Every image-based approach we tried failed:
-  • Sign Language MNIST : 28x28 pixels → 3% MediaPipe detection rate
-  • ASL Alphabet photos : Images nearly all white (brightness 249/255)
-                          → 0% detection rate
-
-ROOT CAUSE: MediaPipe was designed for real webcam frames, not datasets.
-
-SOLUTION: Generate landmarks mathematically from canonical ASL hand shapes,
-then augment them with realistic variation (rotation, scale, jitter) to
-simulate what your webcam will actually see. This gives:
-  • 100% yield (no detection failures)
-  • Runs in < 30 seconds
-  • 300-800 samples per letter
-  • Compatible with train_model.py output format
-
-For best real-world accuracy, also collect 20-30 samples of YOUR OWN hand
-using collect_data.py and retrain — mixing both datasets.
-
 SETUP (no download needed):
 ----------------------------
 Just run:

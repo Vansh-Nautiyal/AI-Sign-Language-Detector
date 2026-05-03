@@ -432,6 +432,8 @@ def get_dataset_stats(csv_path: str) -> dict:
     if not os.path.isfile(csv_path):
         return {}
     df     = pd.read_csv(csv_path)
+    # Filter out accidentally appended header rows
+    df = df[df["label"].astype(str).str.lower() != "label"].copy()
     counts = df["label"].value_counts().to_dict()
     return dict(sorted(counts.items()))
 
@@ -461,6 +463,8 @@ def delete_letter_samples(csv_path: str, letters: list, backup: bool = True) -> 
 
     letters_upper = [l.strip().upper() for l in letters]
     df            = pd.read_csv(csv_path)
+    # Filter out accidentally appended header rows
+    df = df[df["label"].astype(str).str.lower() != "label"].copy()
     original_len  = len(df)
 
     removed = {
@@ -507,6 +511,8 @@ def keep_only_letters(csv_path: str, letters: list, backup: bool = True) -> dict
         raise FileNotFoundError(f"Dataset not found: {csv_path}")
 
     df          = pd.read_csv(csv_path)
+    # Filter out accidentally appended header rows
+    df = df[df["label"].astype(str).str.lower() != "label"].copy()
     keep_upper  = [l.strip().upper() for l in letters]
     to_delete   = [l for l in df["label"].unique() if l not in keep_upper]
 

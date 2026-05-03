@@ -149,10 +149,15 @@ st.subheader("Dataset statistics")
 st.caption("Sample count per letter in data/dataset.csv")
 
 if not report.dataset_df.empty:
-    total = int(report.dataset_df["Samples"].sum())
-    avg   = float(report.dataset_df["Samples"].mean())
-    mn    = int(report.dataset_df["Samples"].min())
-    mx    = int(report.dataset_df["Samples"].max())
+    # Safety filter: remove any "label" rows (case-insensitive)
+    dataset_df_clean = report.dataset_df[
+        report.dataset_df["Letter"].astype(str).str.lower() != "label"
+    ].copy()
+    
+    total = int(dataset_df_clean["Samples"].sum())
+    avg   = float(dataset_df_clean["Samples"].mean())
+    mn    = int(dataset_df_clean["Samples"].min())
+    mx    = int(dataset_df_clean["Samples"].max())
 
     d1, d2, d3, d4 = st.columns(4)
     d1.metric("Total samples",    f"{total:,}")
@@ -161,13 +166,13 @@ if not report.dataset_df.empty:
     d4.metric("Max / letter",     str(mx))
 
     st.bar_chart(
-        report.dataset_df.set_index("Letter")[["Samples"]],
+        dataset_df_clean.set_index("Letter")[["Samples"]],
         height=280,
     )
 
     if mn < 100:
-        weak = report.dataset_df[
-            report.dataset_df["Samples"] < 100
+        weak = dataset_df_clean[
+            dataset_df_clean["Samples"] < 100
         ]["Letter"].tolist()
         st.warning(
             f"Letters with fewer than 100 samples: **{', '.join(weak)}**  \n"

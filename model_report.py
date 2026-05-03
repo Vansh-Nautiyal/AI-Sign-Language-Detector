@@ -133,6 +133,8 @@ def generate_report() -> ModelReport:
         report.confusion_df  = pd.DataFrame(cm, index=names, columns=names)
 
         full_df   = pd.read_csv(CSV_PATH)
+        # Filter out accidentally appended header rows (where label="label")
+        full_df = full_df[full_df["label"].astype(str).str.lower() != "label"].copy()
         label_cts = full_df["label"].value_counts().sort_index()
         report.dataset_df = pd.DataFrame({
             "Letter":  label_cts.index.tolist(),
