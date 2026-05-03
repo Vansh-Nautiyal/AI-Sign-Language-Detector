@@ -1,34 +1,69 @@
-# Real-Time ASL Sign Language Detector
+# ASL Sign Language Detector
 
-This project detects American Sign Language alphabet signs from hand landmarks using MediaPipe and a TensorFlow/Keras MLP model.
+A Python application for recognizing static American Sign Language alphabet signs using MediaPipe hand landmarks and a TensorFlow/Keras neural network.
 
-It now includes two interfaces:
+The project includes a Streamlit interface for photo-based prediction and a realtime OpenCV webcam mode for continuous recognition.
 
-- `app.py`: OpenCV desktop webcam app for continuous real-time prediction.
-- `streamlit_app.py`: Streamlit frontend for camera snapshots and image uploads.
+## Features
+
+- Detects 24 static ASL letters: `A-Z` except `J` and `Z`
+- Photo detection from camera snapshots or uploaded images
+- Realtime webcam detection through an OpenCV window
+- MediaPipe hand landmark extraction
+- Wrist-relative landmark normalization
+- Lightweight Keras MLP classifier
+- Confidence thresholding and majority-vote smoothing
+- Model report page with accuracy, F1 scores, confusion matrix, training curves, and dataset statistics
+
+## Why J and Z Are Excluded
+
+The letters `J` and `Z` are motion-based ASL signs. This project currently classifies single-frame static hand poses, so those two letters are not included in the model classes.
+
+## Tech Stack
+
+- Python
+- Streamlit
+- OpenCV
+- MediaPipe
+- TensorFlow/Keras
+- NumPy
+- Pandas
+- Scikit-learn
+- Matplotlib
 
 ## Project Structure
 
 ```text
-AI-Sign-Language-Detector/
-|-- app.py                    # OpenCV real-time desktop app
-|-- streamlit_app.py          # Streamlit frontend
+Sign Language Recognizer/
+|-- app.py                       # OpenCV realtime desktop app
+|-- streamlit_app.py             # Streamlit app entry point
+|-- shared.py                    # Shared Streamlit/runtime helpers
+|-- model_report.py              # Model evaluation report generator
+|-- import_dataset.py            # Dataset import helper
+|-- manage_dataset.py            # Dataset management helper
 |-- requirements.txt
-|-- data/
-|   `-- dataset.csv
-|-- model/
-|   |-- asl_model.h5
-|   |-- class_names.txt
-|   `-- training_history.png
+|-- pages/
+|   |-- 1_Home.py
+|   |-- 2_Photo_Detection.py
+|   |-- 3_Realtime_Webcam.py
+|   `-- 4_Model_Report.py
 |-- src/
 |   |-- data_collection.py
 |   |-- model_training.py
 |   |-- predict.py
 |   `-- utils.py
-`-- logs/
+|-- data/
+|   |-- dataset.csv              # Local/generated dataset, ignored by Git
+|   `-- webcam.csv               # Local webcam samples, ignored by Git
+|-- model/
+|   |-- asl_model.h5             # Trained model, ignored by Git
+|   |-- class_names.txt
+|   `-- training_history.png
+`-- images/
+    `-- Hand_Signs.png
 ```
 
-## Installation
+## Setup
 
 Python 3.9 to 3.11 is recommended for the smoothest TensorFlow and MediaPipe compatibility.
 
@@ -38,22 +73,28 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Run The Streamlit Frontend
+On macOS/Linux:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Run The Streamlit App
 
 ```bash
 streamlit run streamlit_app.py
 ```
 
-The Streamlit app supports:
+The Streamlit app includes:
 
-- Camera snapshots through the browser.
-- Image upload for `.jpg`, `.jpeg`, `.png`, and `.bmp`.
-- Adjustable confidence threshold.
-- Adjustable smoothing window.
-- Mirrored camera mode.
-- Annotated hand landmarks and top confidence chart.
+- Home page
+- Photo detection page
+- Realtime webcam launch page
+- Model performance report page
 
-## Run The OpenCV App
+## Run The OpenCV Webcam App
 
 ```bash
 python app.py
@@ -63,38 +104,118 @@ Controls:
 
 | Key | Action |
 | --- | --- |
-| `Q` | Quit |
+| `Q` | Quit webcam window |
 | `R` | Reset smoothing buffer |
 
-## Dataset And Training
+## Dataset
 
-Collect or import data, then train the model before running inference if the model files are missing.
+The full dataset files are intentionally ignored by Git:
+
+- `data/dataset.csv`
+- `data/webcam.csv`
+- `data/*.bak`
+
+This keeps the GitHub repository lightweight and prevents large generated data from being committed repeatedly.
+
+To run the project on another device, download or copy the dataset files separately and place them in:
+
+```text
+data/dataset.csv
+data/webcam.csv
+```
+
+Recommended sharing options:
+
+- Google Drive or OneDrive
+- Kaggle Dataset
+- Hugging Face Datasets
+- GitHub Releases
+- DVC, if proper dataset versioning is needed
+
+If you maintain a shared dataset link, add it here:
+
+```text
+Dataset download link: <add-link-here>
+```
+
+## Dataset Format
+
+Each row contains one labelled hand-sign sample:
+
+```text
+label,x0,y0,z0,x1,y1,z1,...,x20,y20,z20
+```
+
+- `label`: ASL letter
+- `x/y/z`: MediaPipe coordinates for 21 hand landmarks
+- Total input features per sample: `21 * 3 = 63`
+- Coordinates are normalized relative to the wrist landmark
+
+## Train The Model
+
+Train using the main dataset:
 
 ```bash
-python src\data_collection.py
 python src\model_training.py
 ```
 
 Expected generated files:
 
-- `data/dataset.csv`
-- `model/asl_model.h5`
-- `model/class_names.txt`
-- `model/training_history.png`
+```text
+model/asl_model.h5
+model/class_names.txt
+model/training_history.png
+```
 
-## Model Notes
+## Generate Model Report
 
-- Input: 63 features from 21 hand landmarks with `x`, `y`, and `z`.
-- Normalization: wrist-relative coordinates.
-- Prediction smoothing: majority vote over recent confident predictions.
-- Default confidence threshold: configured in `src/predict.py`.
+```bash
+python model_report.py
+```
+
+The report evaluates the trained model on a held-out 20% test split and shows:
+
+- Test accuracy
+- Test loss
+- Per-letter precision, recall, and F1 score
+- Confusion matrix
+- Dataset sample counts
+
+## Current Model Summary
+
+At the time this README was written, the trained model reported:
+
+- Test accuracy: `95.84%`
+- Test loss: `0.1450`
+- Classes: `24`
+- Train samples: `7,202`
+- Test samples: `1,801`
+- Model parameters: `60,888`
+
+These values can change after retraining.
+
+## Git Notes For Dataset Files
+
+If `dataset.csv`, `webcam.csv`, or `asl_model.h5` were already committed before adding `.gitignore`, remove them from Git tracking without deleting your local files:
+
+```bash
+git rm --cached data/dataset.csv
+git rm --cached data/webcam.csv
+git rm --cached model/asl_model.h5
+git commit -m "Stop tracking generated data and model artifacts"
+```
+
+After that, future `git pull` operations will update the code, but ignored dataset/model files must be copied or downloaded separately.
 
 ## Troubleshooting
 
 | Problem | Fix |
 | --- | --- |
-| Model not found | Run `python src\model_training.py` or place `asl_model.h5` in `model/`. |
-| Class names not found | Make sure `model/class_names.txt` exists. |
-| No hand detected | Use a clear, well-lit image with one visible hand. |
-| Webcam unavailable in Streamlit | Check browser camera permissions and refresh the app. |
-| OpenCV webcam unavailable | Try changing the camera index in `app.py` from `0` to `1`. |
+| Missing dependency | Run `pip install -r requirements.txt` |
+| Model not found | Run `python src\model_training.py` or copy `model/asl_model.h5` into the project |
+| Dataset not found | Place `dataset.csv` inside the `data/` folder |
+| Class names not found | Ensure `model/class_names.txt` exists or retrain the model |
+| No hand detected | Use a clear, well-lit image with one visible hand |
+| Webcam unavailable | Check camera permissions or try another camera index |
+| TensorFlow/MediaPipe install issues | Use Python 3.9 to 3.11 |
+

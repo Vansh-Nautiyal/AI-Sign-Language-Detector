@@ -1,8 +1,63 @@
-.venv/
-.venv*/
-.tmp/
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+.venv*/
+env/
+ENV/
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Streamlit/runtime logs
 streamlit.out.log
 streamlit.err.log
-.streamlit/secrets.toml
+*.log
+
+# Temporary files
+.tmp/
+tmp/
+temp/
+*.tmp
+*.bak
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Large or generated datasets
+data/dataset.csv
+data/webcam.csv
+data/*.bak
+src/data/*.csv
+src/data/*.bak
+
+# Trained model artifacts
+model/*.h5
+model/*.keras
+model/*.tflite
+model/training_history.png
+
+# Keep small model metadata trackable
+!model/class_names.txt
+
+# Local MediaPipe copies, if downloaded/generated again
+*.task
+!hand_landmarker.task
+!src/hand_landmarker.task
+
