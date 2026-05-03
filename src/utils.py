@@ -389,10 +389,24 @@ def load_dataset_from_csv(csv_path: str) -> tuple[np.ndarray, np.ndarray, "ASLLa
             f"\n[ERROR] Dataset not found: {csv_path}\n"
             "Run  src/collect_data.py  first.\n"
         )
-    df      = pd.read_csv(csv_path)
+    df = pd.read_csv(csv_path)
+    if "label" not in df.columns and len(df.columns) == len(CSV_HEADER):
+        df = pd.read_csv(csv_path, header=None, names=CSV_HEADER)
+
+    # Some dataset operations can accidentally append a CSV header row into
+    # the middle of the file. Drop those rows before numeric conversion.
+    df = df[df["label"].astype(str).str.lower() != "label"].copy()
+    df = df.dropna(subset=["label"])
+
     encoder = ASLLabelEncoder()
     y       = encoder.fit_transform(df["label"].values)
-    X       = df.drop(columns=["label"]).values.astype(np.float32)
+    feature_df = df.drop(columns=["label"]).apply(pd.to_numeric, errors="coerce")
+    bad_rows = feature_df.isna().any(axis=1)
+    if bad_rows.any():
+        df = df.loc[~bad_rows].copy()
+        feature_df = feature_df.loc[~bad_rows].copy()
+        y = encoder.fit_transform(df["label"].values)
+    X       = feature_df.values.astype(np.float32)
     return X, y, encoder
 
 

@@ -22,6 +22,7 @@ to a different CSV and point --webcam to it:
 import argparse
 import os
 import sys
+import tempfile
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -34,7 +35,7 @@ from sklearn.metrics import classification_report
 import tensorflow as tf
 from tensorflow.keras import layers, models, callbacks
 
-from utils import load_dataset_from_csv, ASLLabelEncoder   # ← from utils.py
+from utils import CSV_HEADER, load_dataset_from_csv, ASLLabelEncoder   # ← from utils.py
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.dirname(__file__))
@@ -48,11 +49,43 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 # ── Hyper-parameters ──────────────────────────────────────────────────────────
 TEST_SIZE   = 0.20
 RANDOM_SEED = 42
-EPOCHS      = 100    # increased — early stopping prevents overfitting anyway
+EPOCHS      = 100    
 BATCH_SIZE  = 32
 
 
 # ── Data loading ──────────────────────────────────────────────────────────────
+def _read_landmark_csv(path: str, label: str) -> pd.DataFrame:
+    """Read a landmark CSV and remove accidental repeated header rows."""
+    df = pd.read_csv(path)
+    if "label" not in df.columns and len(df.columns) == len(CSV_HEADER):
+        df = pd.read_csv(path, header=None, names=CSV_HEADER)
+
+    before = len(df)
+    df = df[df["label"].astype(str).str.lower() != "label"].copy()
+    df = df.dropna(subset=["label"])
+
+    feature_cols = [col for col in CSV_HEADER if col != "label"]
+    missing = [col for col in feature_cols if col not in df.columns]
+    if missing:
+        raise ValueError(
+            f"{label} is missing required columns: {missing[:5]}"
+            f"{'...' if len(missing) > 5 else ''}"
+        )
+
+    features = df[feature_cols].apply(pd.to_numeric, errors="coerce")
+    bad_rows = features.isna().any(axis=1)
+    if bad_rows.any():
+        df = df.loc[~bad_rows].copy()
+        features = features.loc[~bad_rows].copy()
+
+    removed = before - len(df)
+    if removed:
+        print(f"{label} cleanup: skipped {removed:,} invalid/header rows")
+
+    df[feature_cols] = features
+    return df[CSV_HEADER]
+
+
 def load_dataset(path: str, webcam_path: str | None = None):
     """
     Load dataset CSV. If webcam_path is given and exists, merge both
@@ -63,20 +96,22 @@ def load_dataset(path: str, webcam_path: str | None = None):
     over synthetic data — this is the key to closing the gap between
     test accuracy and real-world accuracy.
     """
-    import pandas as pd_inner
-
-    df_base = pd_inner.read_csv(path)
+    df_base = _read_landmark_csv(path, "Base dataset")
     print(f"Base dataset   : {len(df_base):,} samples")
 
     if webcam_path and os.path.isfile(webcam_path):
-        df_webcam = pd_inner.read_csv(webcam_path)
+        df_webcam = _read_landmark_csv(webcam_path, "Webcam dataset")
         print(f"Webcam dataset : {len(df_webcam):,} samples  (weighted x3)")
         # Repeat webcam rows 3× so real hand data dominates
-        df_webcam_weighted = pd_inner.concat([df_webcam] * 3, ignore_index=True)
-        df_combined = pd_inner.concat([df_base, df_webcam_weighted], ignore_index=True)
+        df_webcam_weighted = pd.concat([df_webcam] * 3, ignore_index=True)
+        df_combined = pd.concat([df_base, df_webcam_weighted], ignore_index=True)
         print(f"Combined total : {len(df_combined):,} samples")
-        df_combined.to_csv("/tmp/_combined_dataset.csv", index=False)
-        path = "/tmp/_combined_dataset.csv"
+        tmp = tempfile.NamedTemporaryFile(
+            mode="w", suffix="_combined_dataset.csv", delete=False, newline=""
+        )
+        tmp.close()
+        df_combined.to_csv(tmp.name, index=False)
+        path = tmp.name
     elif webcam_path:
         print(f"⚠  Webcam CSV not found: {webcam_path} — using base dataset only")
 
@@ -197,8 +232,36 @@ def evaluate(model, history, X_test, y_test, class_names):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
+    parser = argparse.ArgumentParser(description="Train the ASL MLP classifier")
+    parser.add_argument(
+        "--dataset",
+        default=CSV_PATH,
+        help=f"Base dataset CSV path (default: {CSV_PATH})",
+    )
+    parser.add_argument(
+        "--webcam",
+        default=WEBCAM_CSV_PATH,
+        help=f"Webcam dataset CSV path (default: {WEBCAM_CSV_PATH})",
+    )
+    parser.add_argument(
+        "--mix",
+        action="store_true",
+        help="Train on dataset.csv plus webcam.csv weighted 3x",
+    )
+    parser.add_argument(
+        "--webcam-only",
+        action="store_true",
+        help="Train only on webcam-collected samples",
+    )
+    args = parser.parse_args()
+
     print("\n=== ASL MLP Training ===\n")
-    X, y, class_names, encoder = load_dataset(CSV_PATH)
+    if args.webcam_only:
+        X, y, class_names, encoder = load_dataset(args.webcam)
+    else:
+        webcam_path = args.webcam if args.mix else None
+        X, y, class_names, encoder = load_dataset(args.dataset, webcam_path)
+
     model, history, X_test, y_test = train(X, y, class_names)
     evaluate(model, history, X_test, y_test, class_names)
 
