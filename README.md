@@ -124,19 +124,6 @@ data/dataset.csv
 data/webcam.csv
 ```
 
-Recommended sharing options:
-
-- Google Drive or OneDrive
-- Kaggle Dataset
-- Hugging Face Datasets
-- GitHub Releases
-- DVC, if proper dataset versioning is needed
-
-If you maintain a shared dataset link, add it here:
-
-```text
-Dataset download link: <add-link-here>
-```
 
 ## Dataset Format
 
@@ -181,32 +168,8 @@ The report evaluates the trained model on a held-out 20% test split and shows:
 - Confusion matrix
 - Dataset sample counts
 
-## Current Model Summary
 
-At the time this README was written, the trained model reported:
-
-- Test accuracy: `95.84%`
-- Test loss: `0.1450`
-- Classes: `24`
-- Train samples: `7,202`
-- Test samples: `1,801`
-- Model parameters: `60,888`
-
-These values can change after retraining.
-
-## Git Notes For Dataset Files
-
-If `dataset.csv`, `webcam.csv`, or `asl_model.h5` were already committed before adding `.gitignore`, remove them from Git tracking without deleting your local files:
-
-```bash
-git rm --cached data/dataset.csv
-git rm --cached data/webcam.csv
-git rm --cached model/asl_model.h5
-git commit -m "Stop tracking generated data and model artifacts"
 ```
-
-After that, future `git pull` operations will update the code, but ignored dataset/model files must be copied or downloaded separately.
-
 ## Troubleshooting
 
 | Problem | Fix |
